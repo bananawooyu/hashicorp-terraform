@@ -70,18 +70,3 @@ variable "admin_username" {
   description = "Administrator user name for mysql"
   default     = "hashicorp"
 }
-
-################# DB_subnet ##################
-
-variable "name_prefix" {
-  description = "Creates a unique name beginning with the specified prefix"
-}
-
-variable "identifier" {
-  description = "The identifier of the resource"
-}
-
-variable "subnet_ids" {
-  description = "A list of VPC subnet IDs"
-  default     = ""
-}
