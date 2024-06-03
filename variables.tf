@@ -1,0 +1,219 @@
+variable "prefix" {
+  description = "This prefix will be included in the name of most resources."
+  default = "jh"
+}
+
+variable "region" {
+  type = string
+  default = "us-east-2"
+
+  description = "Enter the region to use for the environment. [Default : us-east-2]"
+}
+
+variable "availability_zone" {
+  type = string
+  default = "us-east-2a"
+
+  description = "Enter the Availability Zone. [Default : us-east-2a]"
+}
+
+variable "image_id" {
+  type = string
+  default = "ami-0b8414ae0d8d8b4cc"
+  description = "Enter the id of the machine Image(AMI) to use for the server. [Default : Amazon Linux 3]"
+}
+
+variable "instance_type" {
+  type = string
+  default = "t3.micro"
+
+  description = "Enter the instance type. [Default : t3.micro]"
+}
+
+variable "db_instance_type" {
+  type = string
+  default = "db.t2.micro"
+
+  description = "Enter the db.instance type. [Default : db.t2.micro]"
+}
+
+variable "db_engine" {
+  type = string
+  default = "mysql"
+
+  description = "Enter the db engine. [Default : mysql]"
+}
+
+variable "db_engine_version" {
+  type = string
+  default = "8.0.35"
+
+  description = "Enter the db engine version. [Default : 8.0.35]"
+}
+
+variable "address_space" {
+  description = "The address space that is used by the virtual network. You can supply more than one address space. Changing this forces a new resource to be created."
+  default     = "10.0.0.0/16"
+}
+
+variable "web_subnet_prefix" {
+  description = "The address prefix to use for the web subnet."
+  default     = "10.0.0.0/24"
+}
+
+variable "db_subnet_prefix" {
+  description = "The address prefix to use for the web subnet."
+  default     = "10.0.10.0/24"
+}
+
+variable "admin_username" {
+  description = "Administrator user name for mysql"
+  default     = "hashicorp"
+}
+
+################# DB_subnet ##################
+
+variable "count" {
+  description = "Whether to create this resource or not?"
+  default     = 1
+}
+
+variable "name_prefix" {
+  description = "Creates a unique name beginning with the specified prefix"
+}
+
+variable "identifier" {
+  description = "The identifier of the resource"
+}
+
+variable "subnet_ids" {
+  type        = "list"
+  description = "A list of VPC subnet IDs"
+  default     = []
+}
+
+variable "tags" {
+  type        = "map"
+  description = "A mapping of tags to assign to the resource"
+  default     = {}
+}
+
+################# DB_instance ##################
+
+variable "identifier" {
+  description = "The name of the RDS instance, if omitted, Terraform will assign a random, unique identifier"
+}
+
+variable "allocated_storage" {
+  description = "The allocated storage in gigabytes"
+}
+
+variable "storage_type" {
+  description = "One of 'standard' (magnetic), 'gp2' (general purpose SSD), or 'io1' (provisioned IOPS SSD). The default is 'io1' if iops is specified, 'standard' if not. Note that this behaviour is different from the AWS web console, where the default is 'gp2'."
+  default     = "gp2"
+}
+
+variable "engine" {
+  description = "The database engine to use"
+}
+
+variable "engine_version" {
+  description = "The engine version to use"
+}
+
+variable "instance_class" {
+  description = "The instance type of the RDS instance"
+}
+
+variable "db_name" {
+  description = "The DB name to create. If omitted, no database is created initially"
+  default = "wordpress_db"
+}
+
+variable "username" {
+  description = "Username for the master DB user"
+  default = "admin"
+}
+
+variable "password" {
+  description = "Password for the master DB user. Note that this may show up in logs, and it will be stored in the state file"
+  default = "qwer1234"
+}
+
+variable "port" {
+  description = "The port on which the DB accepts connections"
+  default = "3306"
+}
+
+variable "vpc_security_group_ids" {
+  description = "List of VPC security groups to associate"
+  default     = "${aws_securitygroup.tfworkshop.id}"
+}
+
+variable "db_subnet_group_name" {
+  description = "Name of DB subnet group. DB instance will be created in the VPC associated with the DB subnet group. If unspecified, will be created in the default VPC"
+  default     = "${aws_db_subnet.tfworkshop.id}"
+}
+
+variable "parameter_group_name" {
+  description = "Name of the DB parameter group to associate"
+  default     = ""
+}
+
+variable "multi_az" {
+  description = "Specifies if the RDS instance is multi-AZ"
+  default     = false
+}
+
+variable "iops" {
+  description = "The amount of provisioned IOPS. Setting this implies a storage_type of 'io1'"
+  default     = 0
+}
+
+variable "publicly_accessible" {
+  description = "Bool to control if instance is publicly accessible"
+  default     = false
+}
+
+variable "allow_major_version_upgrade" {
+  description = "Indicates that major version upgrades are allowed. Changing this parameter does not result in an outage and the change is asynchronously applied as soon as possible"
+  default     = false
+}
+
+variable "auto_minor_version_upgrade" {
+  description = "Indicates that minor engine upgrades will be applied automatically to the DB instance during the maintenance window"
+  default     = false
+}
+
+variable "apply_immediately" {
+  description = "Specifies whether any database modifications are applied immediately, or during the next maintenance window"
+  default     = false
+}
+
+variable "maintenance_window" {
+  description = "The window to perform maintenance in. Syntax: 'ddd:hh24:mi-ddd:hh24:mi'. Eg: 'Mon:00:00-Mon:03:00'"
+}
+
+variable "skip_final_snapshot" {
+  description = "Determines whether a final DB snapshot is created before the DB instance is deleted. If true is specified, no DBSnapshot is created. If false is specified, a DB snapshot is created before the DB instance is deleted, using the value from final_snapshot_identifier"
+  default     = false
+}
+
+variable "copy_tags_to_snapshot" {
+  description = "On delete, copy all Instance tags to the final snapshot (if final_snapshot_identifier is specified)"
+  default     = false
+}
+
+variable "backup_retention_period" {
+  description = "The days to retain backups for"
+  default     = 1
+}
+
+variable "backup_window" {
+  description = "The daily time range (in UTC) during which automated backups are created if they are enabled. Example: '09:46-10:16'. Must not overlap with maintenance_window"
+}
+
+variable "tags" {
+  description = "A mapping of tags to assign to all resources"
+  default     = {}
+}
