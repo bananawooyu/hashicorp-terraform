@@ -20,7 +20,7 @@ resource "aws_eip_association" "tfworkshop" {
 }
 
 resource "aws_instance" "tfworkshop" {
-  ami                         = data.aws_ami.packer.path
+  ami                         = data.aws_ami.packer.id
   instance_type               = var.instance_type
   key_name                    = var.aws_key_pair
   associate_public_ip_address = true
