@@ -14,13 +14,13 @@ output instance {
   value = aws_instance.tfworkshop.ami
 }
 
-output db_instance {
-  value = aws_db_instance.db_instance.id
-}
+# output db_instance {
+#   value = aws_db_instance.db_instance.id
+# }
 
-output "db_endpoint" {
-  value = aws_db_instance.db_instance.endpoint
-}
+# output "db_endpoint" {
+#   value = aws_db_instance.db_instance.endpoint
+# }
 
 output "aws_instance" {
   value = "${aws_instance.tfworkshop.id}"
