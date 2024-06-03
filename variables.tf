@@ -43,7 +43,10 @@ variable "db_instance_type" {
 
   description = "Enter the db.instance type. [Default : db.t2.micro]"
 }
-
+variable "allocated_storage" {
+  description = "The allocated storage in gigabytes"
+  default = 5
+}
 variable "db_engine" {
   type = string
   default = "mysql"
@@ -73,7 +76,17 @@ variable "db_subnet_prefix" {
   default     = "10.0.10.0/24"
 }
 
+variable "db_name" {
+  description = "The DB name to create. If omitted, no database is created initially"
+  default = "jh-tfworkshop-rds"
+}
+
 variable "admin_username" {
   description = "Administrator user name for mysql"
   default     = "hashicorp"
+}
+
+variable "password" {
+  description = "Password for the master DB user. Note that this may show up in logs, and it will be stored in the state file"
+  default     = "qwer1234"
 }

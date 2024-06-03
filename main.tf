@@ -32,26 +32,45 @@ resource "aws_instance" "tfworkshop" {
   }
 }
 
-resource "null_resource" "configure-wordpress-app" {
-  depends_on = [aws_eip_association.tfworkshop]
+# resource "null_resource" "configure-wordpress-app" {
+#   depends_on = [aws_eip_association.tfworkshop]
 
-  triggers = {
-    build_number = timestamp()
-  }
+#   triggers = {
+#     build_number = timestamp()
+#   }
 
-  provisioner "remote-exec" {
-    inline = [
-      "sudo wget --no-check-certificate --no-proxy 'https://terraformworkshop-jh.s3.ap-northeast-2.amazonaws.com/wordpress.sh'",
-			"sudo chmod +x wordpress.sh",
-			"./wordpress.sh",
-			"rm wordpress.sh"
-    ]
+#   provisioner "remote-exec" {
+#     inline = [
+#       "sudo wget --no-check-certificate --no-proxy 'https://terraformworkshop-jh.s3.ap-northeast-2.amazonaws.com/wordpress.sh'",
+# 			"sudo chmod +x wordpress.sh",
+# 			"./wordpress.sh",
+# 			"rm wordpress.sh"
+#     ]
 
-    connection {
-      type        = "ssh"
-      user        = "ec2-user"
-      private_key = "${file("../tfc_ws_jh.ppk")}"
-      host        = aws_eip.tfworkshop.public_ip
-    }
-  }
+#     connection {
+#       type        = "ssh"
+#       user        = "ec2-user"
+#       private_key = "${file("E:\Lab Project\hcp terraform workshop\tfc_ws_jh.ppk")}"
+#       host        = aws_eip.tfworkshop.public_ip
+#     }
+#   }
+# }
+
+module "db" {
+  source = "./modules/*"
+  
+  engine            = "${var.db_engine}"
+  engine_version    = "${var.db_engine_version}"
+  instance_class    = "${var.db_instance_type}"
+  allocated_storage = 5
+  
+  name     = "${var.db_name}"
+  username = "${var_admin_username}"
+  password = "${var.password}"
+  port     = "3306"
+  
+  vpc_security_group_ids = ["${aws_security_group.tfworkshop_db.id}"]
+  
+  # DB subnet group
+  subnet_ids = ["${aws_subnet.tfworkshop_db.id}"]
 }
