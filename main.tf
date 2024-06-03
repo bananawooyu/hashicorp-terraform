@@ -50,7 +50,7 @@ resource "null_resource" "configure-wordpress-app" {
     connection {
       type        = "ssh"
       user        = "ec2-user"
-      private_key = var.aws_key_pair
+      private_key = "${file("~/.ssh/id_rsa")}"
       host        = aws_eip.tfworkshop.public_ip
     }
   }
