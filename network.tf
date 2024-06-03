@@ -90,7 +90,7 @@ resource "aws_db_subnet" "tfworkshop" {
   }
 }
 
-resource "aws_security_group" "tfworkshop" {
+resource "aws_db_security_group" "tfworkshop" {
   name = "${var.prefix}-db-security-group"
 
   vpc_id = aws_vpc.tfworkshop.id
@@ -124,7 +124,7 @@ resource "aws_db_route_table" "tfworkshop" {
   }
 }
 
-resource "aws_route_table_association" "tfworkshop" {
+resource "aws_db_route_table_association" "tfworkshop" {
   subnet_id      = aws_db_subnet.tfworkshop.id
   route_table_id = aws_route_table.tfworkshop.id
 }
