@@ -15,7 +15,7 @@ variable "availability_zone" {
   default = "us-east-2a"
 
   description = "Enter the Availability Zone. [Default : us-east-2a]"
-}amiec2
+}
 
 variable "image_id" {
   type = string
