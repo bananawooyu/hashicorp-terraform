@@ -81,7 +81,7 @@ resource "aws_route_table_association" "tfworkshop" {
 
 #################### DB ######################
 
-resource "aws_db_subnet" "tfworkshop" {
+resource "aws_subnet" "tfworkshop_db" {
   vpc_id     = aws_vpc.tfworkshop.id
   cidr_block = var.db_subnet_prefix
 
@@ -90,7 +90,7 @@ resource "aws_db_subnet" "tfworkshop" {
   }
 }
 
-resource "aws_db_security_group" "tfworkshop" {
+resource "aws_security_group" "tfworkshop_db" {
   name = "${var.prefix}-db-security-group"
 
   vpc_id = aws_vpc.tfworkshop.id
@@ -115,16 +115,15 @@ resource "aws_db_security_group" "tfworkshop" {
   }
 }
 
-resource "aws_db_route_table" "tfworkshop" {
+resource "aws_route_table" "tfworkshop_db" {
   vpc_id = aws_vpc.tfworkshop.id
 
   route {
     cidr_block = "10.0.0.0/24"
-    subnet_id = aws_db_subnet.tfworkshop.id
   }
 }
 
-resource "aws_db_route_table_association" "tfworkshop" {
-  subnet_id      = aws_db_subnet.tfworkshop.id
+resource "aws_route_table_association" "tfworkshop_db" {
+  subnet_id      = aws_subnet.tfworkshop_db.id
   route_table_id = aws_route_table.tfworkshop.id
 }
