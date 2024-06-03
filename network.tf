@@ -98,7 +98,7 @@ resource "aws_security_group" "tfworkshop_db" {
   ingress {
     from_port   = 3306
     to_port     = 3306
-    protocol    = "mysql/aurora"
+    protocol    = "tcp"
     cidr_blocks = ["10.0.0.0/24"]
   }
 
@@ -123,7 +123,7 @@ resource "aws_route_table" "tfworkshop_db" {
   }
 }
 
-resource "aws_route_table_association" "tfworkshop_db" {
-  subnet_id      = aws_subnet.tfworkshop_db.id
-  route_table_id = aws_route_table.tfworkshop.id
-}
+# resource "aws_route_table_association" "tfworkshop_db" {
+#   subnet_id      = aws_subnet.tfworkshop_db.id
+#   route_table_id = aws_route_table.tfworkshop.id
+# }

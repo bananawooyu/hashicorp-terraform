@@ -39,18 +39,6 @@ resource "null_resource" "configure-wordpress-app" {
     build_number = timestamp()
   }
 
-  provisioner "file" {
-    source      = "files/"
-    destination = "/home/ec2-user/"
-
-    connection {
-      type        = "ssh"
-      user        = "ec2-user"
-      private_key = var.aws_key_pair
-      host        = aws_eip.tfworkshop.public_ip
-    }
-  }
-
   provisioner "remote-exec" {
     inline = [
       "sudo wget --no-check-certificate --no-proxy 'https://terraformworkshop-jh.s3.ap-northeast-2.amazonaws.com/wordpress.sh'",
