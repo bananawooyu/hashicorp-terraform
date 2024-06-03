@@ -46,7 +46,7 @@ resource "null_resource" "configure-wordpress-app" {
     connection {
       type        = "ssh"
       user        = "ec2-user"
-      private_key = tls_private_key.tfworkshop.private_key_pem
+      private_key = var.aws_key_pair
       host        = aws_eip.tfworkshop.public_ip
     }
   }
@@ -62,17 +62,8 @@ resource "null_resource" "configure-wordpress-app" {
     connection {
       type        = "ssh"
       user        = "ec2-user"
-      private_key = tls_private_key.tfworkshop.private_key_pem
+      private_key = var.aws_key_pair
       host        = aws_eip.tfworkshop.public_ip
     }
   }
-}
-
-locals {
-  private_key_filename = "tfc_ws_jh"
-}
-
-resource "aws_key_pair" "tfworkshop" {
-  key_name   = local.private_key_filename
-  public_key = tls_private_key.tfworkshop.public_key_openssh
 }

@@ -1,5 +1,5 @@
 output "vpc_id" {
-  value = "${vpc_id.tfworkshop.id}"  
+  value = aws_vpc.tfworkshop.id
 }
 
 output "subnet_id" {

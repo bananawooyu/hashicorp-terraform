@@ -30,6 +30,13 @@ variable "instance_type" {
   description = "Enter the instance type. [Default : t3.micro]"
 }
 
+variable "aws_key_pair" {
+  type = string
+  default = "tfc_ws_jh"
+
+  description = "Enter the key pair name. [Default : tfc_ws_jh]"
+}
+
 variable "db_instance_type" {
   type = string
   default = "db.t2.micro"
