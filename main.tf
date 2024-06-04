@@ -37,6 +37,11 @@ resource "aws_instance" "tfworkshop" {
   }
 }
 
+# resource "aws_key_pair" "deployer" {
+#   key_name   = var.aws_key_pair
+#   public_key = var.aws_key_pair_publi_key
+# }
+
 resource "null_resource" "configure-wordpress-app" {
   depends_on = [aws_eip_association.tfworkshop]
 
@@ -55,7 +60,7 @@ resource "null_resource" "configure-wordpress-app" {
     connection {
       type        = "ssh"
       user        = "ec2-user"
-      private_key = "${file("E:/Lab Project/hcp terraform workshop/tfc_ws_jh.ppk")}"
+      private_key = file("E:/Lab Project/hcp terraform workshop/tfc_ws_jh.ppk")
       host        = aws_eip.tfworkshop.public_ip
     }
   }
