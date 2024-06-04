@@ -56,7 +56,7 @@ resource "aws_instance" "tfworkshop" {
 #   }
 # }
 
-module "db" {
+module "db_instance" {
   source = "https://github.com/terraform-aws-modules/terraform-aws-rds"
 
   identifier = "tfworkshop_rds"
