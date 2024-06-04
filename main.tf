@@ -86,6 +86,13 @@ module "rds" {
   backup_window      = "03:00-06:00"
   
   # DB subnet group
-  #subnet_ids = "${aws_subnet.tfworkshop_db}"
   subnet_ids = [values(aws_subnet.tfworkshop_db)[0].id,values(aws_subnet.tfworkshop_db)[1].id]
+}
+
+module "db_subnet_group" {
+  source = "modules/db_subnet_group"
+
+  name            = "${local.name_prefix}-tfworkshop-db-subnet-group"
+  use_name_prefix = "${local.name_prefix}-tfworkshop-rds"
+  subnet_ids      = [values(aws_subnet.tfworkshop_db)[0].id,values(aws_subnet.tfworkshop_db)[1].id]
 }
