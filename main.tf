@@ -58,7 +58,10 @@ resource "aws_instance" "tfworkshop" {
 
 module "db_instance" {
   #source = "https://github.com/terraform-aws-modules/terraform-aws-rds"
-  source = "E:/Lab Project/hcp terraform workshop/terraform-aws-rds-1.0.0/modules/db_instance"
+  source = [
+    "./modules/db_instance",
+    "./modules/db_subnet_group"
+  ]
   
   identifier = "tfworkshop_rds"
   
