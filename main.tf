@@ -90,7 +90,7 @@ module "rds" {
 }
 
 module "db_subnet_group" {
-  source = "terraform-aws-modules/rds/aws/"
+  source = "terraform-aws-modules/rds/aws//modules/db_subnet_group"
 
   name            = "${local.name_prefix}-tfworkshop-db-subnet-group"
   use_name_prefix = "${local.name_prefix}-tfworkshop-rds"
