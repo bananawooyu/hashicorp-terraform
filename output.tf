@@ -27,18 +27,18 @@ output db_instance {
   value = "${module.db_instance.db_instance.id}"
 }
 
-output "db_endpoint" {
-  value = "${module.db_instance.db_instance.endpoint}"
+output "db_instance_endpoint" {
+  value = "${module.rds.db_instance_endpoint}"
 }
 
 output "db_instance_name" {
   description = "The database name"
-  value       = "${module.db_instance.this_db_instance_name}"
+  value       = "${module.rds.db_instance_name}"
 }
 
 output "db_instance_username" {
   description = "The master username for the database"
-  value       = "${module.db_instance.this_db_instance_username}"
+  value       = "${module.rds.db_instance_username}"
 }
 
 output "db_instance_password" {
