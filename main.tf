@@ -14,10 +14,10 @@ data "aws_ami" "packer" {
   owners = ["552166050235"] # private ami
 }
 
-resource "aws_eip" "tfworkshop" {
-  instance = aws_instance.tfworkshop.id
-  domain = "vpc"
-}
+# resource "aws_eip" "tfworkshop" {
+#   instance = aws_instance.tfworkshop.id
+#   domain = "vpc"
+# }
 
 # resource "aws_eip_association" "tfworkshop" {
 #   instance_id   = aws_instance.tfworkshop.id
