@@ -11,10 +11,10 @@ variable "region" {
 }
 
 variable "availability_zone" {
-  type = string
-  default = "us-east-2a"
+  type = list(string)
+  default = ["us-east-2a","us-east-2c"]
 
-  description = "Enter the Availability Zone. [Default : us-east-2a]"
+  description = "Enter the Availability Zone. [Default : us-east-2a,us-east-2c]"
 }
 
 variable "image_id" {
@@ -123,5 +123,5 @@ variable "use_name_prefix" {
 variable "multi_az" {
   description = "Specifies if the RDS instance is multi-AZ"
   type        = bool
-  default     = false
+  default     = true
 }
