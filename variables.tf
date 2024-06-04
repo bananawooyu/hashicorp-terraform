@@ -94,13 +94,13 @@ variable "password" {
 variable "family" {
   description = "The family of the DB parameter group"
   type        = string
-  default     = null
+  default     = "mysql8.0"
 }
 
 variable "major_engine_version" {
   description = "Specifies the major version of the engine that this option group should be associated with"
   type        = string
-  default     = null
+  default     = "8.0"
 }
 
 variable "use_name_prefix" {
