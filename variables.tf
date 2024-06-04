@@ -39,7 +39,7 @@ variable "aws_key_pair" {
 
 variable "db_instance_type" {
   type = string
-  default = "db.t2.micro"
+  default = "db.t3.micro"
 
   description = "Enter the db.instance type. [Default : db.t2.micro]"
 }
