@@ -67,7 +67,7 @@ module "rds" {
   allocated_storage = 5
   
   db_name  = "${var.db_name}"
-  username = "${var_admin_username}"
+  username = "${var.admin_username}"
   password = "${var.password}"
   port     = "3306"
   

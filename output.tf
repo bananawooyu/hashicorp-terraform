@@ -23,8 +23,8 @@ output "wordpress_url" {
   value = "http://${aws_eip.tfworkshop.public_ip}"
 }
 
-output db_instance {
-  value = "${module.db_instance.db_instance.id}"
+output db_instance_address {
+  value = "${module.rds.db_instance_address}"
 }
 
 output "db_instance_endpoint" {
