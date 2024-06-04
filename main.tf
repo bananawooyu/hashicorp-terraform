@@ -79,8 +79,8 @@ module "rds" {
 
   family = var.family
   major_engine_version = var.major_engine_version
-  availability_zone    = [var.availability_zone[0],var.availability_zone[1]]
-  multi_az = var.multi_az
+  # availability_zone    = [var.availability_zone[0],var.availability_zone[1]]
+  # multi_az = var.multi_az
 
   maintenance_window = "Mon:00:00-Mon:03:00"
   backup_window      = "03:00-06:00"
