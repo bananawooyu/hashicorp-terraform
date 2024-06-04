@@ -91,6 +91,20 @@ resource "aws_subnet" "tfworkshop_db" {
     name = "${var.prefix}-subnet-${each.value["des"]}"
   }
 }
+
+resource "aws_route_table" "tfworkshop_db" {
+  vpc_id = aws_vpc.tfworkshop.id
+
+  route {
+    cidr_block = var.web_subnet_prefix
+  }
+}
+
+resource "aws_route_table_association" "tfworkshop_db" {
+  subnet_id      = aws_subnet.tfworkshop_db.id
+  route_table_id = aws_route_table.tfworkshop_db.id
+}
+
 resource "aws_security_group" "tfworkshop_db" {
   name = "${var.prefix}-db-security-group"
 

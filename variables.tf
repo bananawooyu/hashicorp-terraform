@@ -79,8 +79,8 @@ variable "db_subnet_prefix" {
       cidr = "10.0.10.0/24"
       des = "2a"
     }
-    subnet-2b = {
-      az = "us-east-2b"
+    subnet-2c = {
+      az = "us-east-2c"
       cidr = "10.0.20.0/24"
       des = "2c"
     }
