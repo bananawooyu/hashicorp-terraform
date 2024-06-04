@@ -109,6 +109,12 @@ variable "use_name_prefix" {
   default     = false
 }
 
+variable "availability_zone" {
+  description = "The Availability Zone of the RDS instance"
+  type        = string
+  default     = "us-east-2a"
+}
+
 variable "multi_az" {
   description = "Specifies if the RDS instance is multi-AZ"
   type        = bool
