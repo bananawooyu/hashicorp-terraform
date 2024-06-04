@@ -1,5 +1,6 @@
 locals {
   name_prefix = "jh-ws-rds"
+  db_subnet_group_name = "${local.name_prefix}-tfworkshop-db-subnet-group"
 }
 
 data "aws_ami" "packer" {
@@ -76,6 +77,7 @@ module "rds" {
   port     = "3306"
   
   vpc_security_group_ids = ["${aws_security_group.tfworkshop_db.id}"]
+  db_subnet_group_name = local.db_subnet_group_name
 
   family = var.family
   major_engine_version = var.major_engine_version
@@ -92,6 +94,6 @@ module "rds" {
 module "db_subnet_group" {
   source = "terraform-aws-modules/rds/aws//modules/db_subnet_group"
 
-  name            = "${local.name_prefix}-tfworkshop-db-subnet-group"
+  name            = local.db_subnet_group_name
   subnet_ids      = [tostring(values(aws_subnet.tfworkshop_db)[0].id),tostring(values(aws_subnet.tfworkshop_db)[1].id)]
 }
