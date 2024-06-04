@@ -83,7 +83,7 @@ resource "aws_route_table_association" "tfworkshop" {
 
 resource "aws_subnet" "tfworkshop_db_1" {
   vpc_id     = aws_vpc.tfworkshop.id
-  cidr_block = var.db_subnet_prefix
+  cidr_block = var.db_subnet_prefix[0]
   availability_zone = var.availability_zone
 
   tags = {
@@ -93,7 +93,7 @@ resource "aws_subnet" "tfworkshop_db_1" {
 
 resource "aws_subnet" "tfworkshop_db_2" {
   vpc_id     = aws_vpc.tfworkshop.id
-  cidr_block = var.db_subnet_prefix
+  cidr_block = var.db_subnet_prefix[1]
   availability_zone = "us-east-2b"
 
   tags = {
