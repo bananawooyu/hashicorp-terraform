@@ -57,7 +57,9 @@ resource "aws_instance" "tfworkshop" {
 # }
 
 module "db" {
-  source = "./modules/*"
+  source = "https://github.com/terraform-aws-modules/terraform-aws-rds"
+
+  identifier = "tfworkshop_rds"
   
   engine            = "${var.db_engine}"
   engine_version    = "${var.db_engine_version}"
@@ -70,6 +72,9 @@ module "db" {
   port     = "3306"
   
   vpc_security_group_ids = ["${aws_security_group.tfworkshop_db.id}"]
+
+  maintenance_window = "Mon:00:00-Mon:03:00"
+  backup_window      = "03:00-06:00"
   
   # DB subnet group
   subnet_ids = ["${aws_subnet.tfworkshop_db.id}"]
