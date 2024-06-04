@@ -44,35 +44,6 @@ resource "aws_instance" "tfworkshop" {
   }
 }
 
-# resource "aws_key_pair" "deployer" {
-#   key_name   = var.aws_key_pair
-#   public_key = var.aws_key_pair_publi_key
-# }
-
-# resource "null_resource" "configure-wordpress-app" {
-#   depends_on = [aws_eip_association.tfworkshop]
-
-#   triggers = {
-#     build_number = timestamp()
-#   }
-
-#   provisioner "remote-exec" {
-#     inline = [
-#       "sudo wget --no-check-certificate --no-proxy 'https://terraformworkshop-jh.s3.ap-northeast-2.amazonaws.com/wordpress.sh'",
-# 			"sudo chmod +x wordpress.sh",
-# 			"./wordpress.sh",
-# 			"rm wordpress.sh"
-#     ]
-
-#     connection {
-#       type        = "ssh"
-#       user        = "ec2-user"
-#       private_key = file("E:/Lab Project/hcp terraform workshop/tfc_ws_jh.ppk")
-#       host        = aws_eip.tfworkshop.public_ip
-#     }
-#   }
-# }
-
 module "rds" {
   source = "terraform-aws-modules/rds/aws"
   

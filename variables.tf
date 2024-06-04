@@ -37,11 +37,6 @@ variable "aws_key_pair" {
   description = "Enter the key pair name. [Default : tfc_ws_jh]"
 }
 
-# variable "aws_key_pair_publi_key" {
-#   type = string
-#   default = "AAAAB3NzaC1yc2EAAAADAQABAAABAQDWa5HotErowibFYz2Sa7uzfm0k0chIQJ0K8p+XsrNSBDCSVZoclPklchMhPbHaq3cujgy0IuOgf2h5x7CrW9zf+iqew043+hGZqdR8clYx7aGxPDixsVCmBiYWR3W+mIUP1giYk76LZ6NE9e315CZQYJ++xoX8zRgveFRXzrkioXD6eFi9xXF5hxuB+PO1yp8NuxWTi0UzqQk0+fzht9yv+rCnjgUpp+CZkbqPzQFaLqVMnJt1tVd1OU+spoP6NjBJgf5AW7j0p5zr4VWdpbhuV2XPTiS0ro9IZRtjqSQ8bCHMUrrn5IGESG19Mvq1gKqrekBledvQFQvuXYNI2YmF"
-# }
-
 variable "db_instance_type" {
   type = string
   default = "db.t3.micro"
