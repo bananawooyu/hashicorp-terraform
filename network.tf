@@ -101,8 +101,7 @@ resource "aws_route_table" "tfworkshop_db" {
 }
 
 resource "aws_route_table_association" "tfworkshop_db" {
-  subnet_id      = values(aws_subnet.tfworkshop_db)[*]
-
+  subnet_id      = values(aws_subnet.tfworkshop_db)[0].id
   route_table_id = aws_route_table.tfworkshop_db.id
 }
 
