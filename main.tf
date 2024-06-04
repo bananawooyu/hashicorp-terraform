@@ -93,6 +93,5 @@ module "db_subnet_group" {
   source = "terraform-aws-modules/rds/aws//modules/db_subnet_group"
 
   name            = "${local.name_prefix}-tfworkshop-db-subnet-group"
-  use_name_prefix = "${local.name_prefix}-tfworkshop-rds"
-  subnet_ids      = [values(aws_subnet.tfworkshop_db)[0].id,values(aws_subnet.tfworkshop_db)[1].id]
+  subnet_ids      = [tostring(values(aws_subnet.tfworkshop_db)[0].id),tostring(values(aws_subnet.tfworkshop_db)[1].id)]
 }
