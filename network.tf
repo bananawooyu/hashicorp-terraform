@@ -95,9 +95,7 @@ resource "aws_subnet" "tfworkshop_db" {
 resource "aws_route_table" "tfworkshop_db" {
   vpc_id = aws_vpc.tfworkshop.id
 
-  route {
-    cidr_block = var.web_subnet_prefix
-  }
+  route = []
 }
 
 resource "aws_route_table_association" "tfworkshop_db" {
