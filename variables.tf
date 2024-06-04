@@ -30,12 +30,12 @@ variable "instance_type" {
   description = "Enter the instance type. [Default : t3.micro]"
 }
 
-# variable "aws_key_pair" {
-#   type = string
-#   default = "tfc_ws_jh"
+variable "aws_key_pair" {
+  type = string
+  default = "tfc_ws_jh"
 
-#   description = "Enter the key pair name. [Default : tfc_ws_jh]"
-# }
+  description = "Enter the key pair name. [Default : tfc_ws_jh]"
+}
 
 # variable "aws_key_pair_publi_key" {
 #   type = string
