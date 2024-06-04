@@ -57,8 +57,9 @@ resource "aws_instance" "tfworkshop" {
 # }
 
 module "db_instance" {
-  source = "https://github.com/terraform-aws-modules/terraform-aws-rds"
-
+  #source = "https://github.com/terraform-aws-modules/terraform-aws-rds"
+  source = "E:/Lab Project/hcp terraform workshop/terraform-aws-rds-1.0.0/modules/db_instance"
+  
   identifier = "tfworkshop_rds"
   
   engine            = "${var.db_engine}"
