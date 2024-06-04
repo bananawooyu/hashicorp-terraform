@@ -37,6 +37,7 @@ resource "aws_instance" "tfworkshop" {
       "sudo wget --no-check-certificate --no-proxy 'https://terraformworkshop-jh.s3.ap-northeast-2.amazonaws.com/wordpress.sh'"
 			"sudo chmod 777 wordpress.sh"
 			"./wordpress.sh"
+      sleep 5
       EOF
 
   tags = {
