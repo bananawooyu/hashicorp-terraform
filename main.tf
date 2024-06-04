@@ -19,10 +19,10 @@ resource "aws_eip" "tfworkshop" {
   domain = "vpc"
 }
 
-resource "aws_eip_association" "tfworkshop" {
-  instance_id   = aws_instance.tfworkshop.id
-  allocation_id = aws_eip.tfworkshop.id
-}
+# resource "aws_eip_association" "tfworkshop" {
+#   instance_id   = aws_instance.tfworkshop.id
+#   allocation_id = aws_eip.tfworkshop.id
+# }
 
 # resource "aws_instance" "tfworkshop" {
 #   ami                         = data.aws_ami.packer.id
