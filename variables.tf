@@ -11,8 +11,8 @@ variable "region" {
 }
 
 variable "availability_zone" {
-  type = string
-  default = "us-east-2a"
+  type = list
+  default = ["us-east-2a","us-east-2b"]
 
   description = "Enter the Availability Zone. [Default : us-east-2a]"
 }
@@ -73,7 +73,7 @@ variable "web_subnet_prefix" {
 
 variable "db_subnet_prefix" {
   description = "The address prefix to use for the web subnet."
-  default     = "10.0.10.0/24"
+  default     = ["10.0.10.0/24","10.0.20.0/24"]
 }
 
 variable "db_name" {
