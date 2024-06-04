@@ -77,7 +77,7 @@ module "rds" {
   port     = "3306"
   
   vpc_security_group_ids = ["${aws_security_group.tfworkshop_db.id}"]
-  db_subnet_group_name = "${local.db_subnet_group_name}*"
+  db_subnet_group_name = "${module.db_subnet_group.db_instance_name}"
 
   family = var.family
   major_engine_version = var.major_engine_version
