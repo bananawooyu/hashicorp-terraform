@@ -37,29 +37,29 @@ resource "aws_instance" "tfworkshop" {
   }
 }
 
-# resource "null_resource" "configure-wordpress-app" {
-#   depends_on = [aws_eip_association.tfworkshop]
+resource "null_resource" "configure-wordpress-app" {
+  depends_on = [aws_eip_association.tfworkshop]
 
-#   triggers = {
-#     build_number = timestamp()
-#   }
+  triggers = {
+    build_number = timestamp()
+  }
 
-#   provisioner "remote-exec" {
-#     inline = [
-#       "sudo wget --no-check-certificate --no-proxy 'https://terraformworkshop-jh.s3.ap-northeast-2.amazonaws.com/wordpress.sh'",
-# 			"sudo chmod +x wordpress.sh",
-# 			"./wordpress.sh",
-# 			"rm wordpress.sh"
-#     ]
+  provisioner "remote-exec" {
+    inline = [
+      "sudo wget --no-check-certificate --no-proxy 'https://terraformworkshop-jh.s3.ap-northeast-2.amazonaws.com/wordpress.sh'",
+			"sudo chmod +x wordpress.sh",
+			"./wordpress.sh",
+			"rm wordpress.sh"
+    ]
 
-#     connection {
-#       type        = "ssh"
-#       user        = "ec2-user"
-#       private_key = "${file("E:\Lab Project\hcp terraform workshop\tfc_ws_jh.ppk")}"
-#       host        = aws_eip.tfworkshop.public_ip
-#     }
-#   }
-# }
+    connection {
+      type        = "ssh"
+      user        = "ec2-user"
+      private_key = "${file("E:/Lab Project/hcp terraform workshop/tfc_ws_jh.ppk")}"
+      host        = aws_eip.tfworkshop.public_ip
+    }
+  }
+}
 
 module "rds" {
   source = "terraform-aws-modules/rds/aws"
