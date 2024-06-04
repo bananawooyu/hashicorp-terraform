@@ -86,5 +86,6 @@ module "rds" {
   backup_window      = "03:00-06:00"
   
   # DB subnet group
-  subnet_ids = "${aws_subnet.tfworkshop_db[each.key]}"
+  #subnet_ids = "${aws_subnet.tfworkshop_db}"
+  subnet_ids = [values(aws_subnet.tfworkshop_db)[0].id,values(aws_subnet.tfworkshop_db)[1].id]
 }
