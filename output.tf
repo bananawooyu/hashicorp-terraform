@@ -46,6 +46,6 @@ output "db_instance_password" {
   value       = "${var.password}"
 }
 
-output "db_subnet_group" {
-  value       = "${module.db_subnet_group.db_instance_name}"
+output "db_subnet_group_id" {
+  value       = "${module.db_subnet_group.db_subnet_group_id}"
 }
