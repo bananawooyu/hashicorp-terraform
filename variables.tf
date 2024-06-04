@@ -89,7 +89,7 @@ variable "db_subnet_prefix" {
 
 variable "db_name" {
   description = "The DB name to create. If omitted, no database is created initially"
-  default = "jh-tfworkshop-rds"
+  default = "wordpress"
 }
 
 variable "admin_username" {
