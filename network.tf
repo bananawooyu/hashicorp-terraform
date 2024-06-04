@@ -127,16 +127,3 @@ resource "aws_security_group" "tfworkshop_db" {
     Name = "${var.prefix}-db-security-group"
   }
 }
-
-# resource "aws_route_table" "tfworkshop_db" {
-#   vpc_id = aws_vpc.tfworkshop.id
-
-#   route {
-#     cidr_block = "10.0.0.0/24"
-#   }
-# }
-
-# resource "aws_route_table_association" "tfworkshop_db" {
-#   subnet_id      = aws_subnet.tfworkshop_db.id
-#   route_table_id = aws_route_table.tfworkshop.id
-# }

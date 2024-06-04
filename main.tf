@@ -60,38 +60,38 @@ resource "aws_instance" "tfworkshop" {
 #   }
 # }
 
-# module "rds" {
-#   source = "terraform-aws-modules/rds/aws"
+module "rds" {
+  source = "terraform-aws-modules/rds/aws"
   
-#   identifier = "tfworkshop-rds"
+  identifier = "tfworkshop-rds"
   
-#   engine            = "${var.db_engine}"
-#   engine_version    = "${var.db_engine_version}"
-#   instance_class    = "${var.db_instance_type}"
-#   allocated_storage = 5
+  engine            = "${var.db_engine}"
+  engine_version    = "${var.db_engine_version}"
+  instance_class    = "${var.db_instance_type}"
+  allocated_storage = 5
   
-#   db_name  = "${var.db_name}"
-#   username = "${var.admin_username}"
-#   password = "${var.password}"
-#   port     = "3306"
+  db_name  = "${var.db_name}"
+  username = "${var.admin_username}"
+  password = "${var.password}"
+  port     = "3306"
   
-#   vpc_security_group_ids = ["${aws_security_group.tfworkshop_db.id}"]
+  vpc_security_group_ids = ["${aws_security_group.tfworkshop_db.id}"]
 
-#   family = var.family
-#   major_engine_version = var.major_engine_version
-#   # availability_zone    = [var.availability_zone[0],var.availability_zone[1]]
-#   # multi_az = var.multi_az
+  family = var.family
+  major_engine_version = var.major_engine_version
+  # availability_zone    = [var.availability_zone[0],var.availability_zone[1]]
+  # multi_az = var.multi_az
 
-#   maintenance_window = "Mon:00:00-Mon:03:00"
-#   backup_window      = "03:00-06:00"
+  maintenance_window = "Mon:00:00-Mon:03:00"
+  backup_window      = "03:00-06:00"
   
-#   # DB subnet group
-#   subnet_ids = [values(aws_subnet.tfworkshop_db)[0].id,values(aws_subnet.tfworkshop_db)[1].id]
-# }
+  # DB subnet group
+  subnet_ids = [values(aws_subnet.tfworkshop_db)[0].id,values(aws_subnet.tfworkshop_db)[1].id]
+}
 
-# module "db_subnet_group" {
-#   source = "terraform-aws-modules/rds/aws//modules/db_subnet_group"
+module "db_subnet_group" {
+  source = "terraform-aws-modules/rds/aws//modules/db_subnet_group"
 
-#   name            = "${local.name_prefix}-tfworkshop-db-subnet-group"
-#   subnet_ids      = [tostring(values(aws_subnet.tfworkshop_db)[0].id),tostring(values(aws_subnet.tfworkshop_db)[1].id)]
-# }
+  name            = "${local.name_prefix}-tfworkshop-db-subnet-group"
+  subnet_ids      = [tostring(values(aws_subnet.tfworkshop_db)[0].id),tostring(values(aws_subnet.tfworkshop_db)[1].id)]
+}
