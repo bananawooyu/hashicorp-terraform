@@ -73,7 +73,18 @@ variable "web_subnet_prefix" {
 
 variable "db_subnet_prefix" {
   description = "The address prefix to use for the web subnet."
-  default     = ["10.0.10.0/24","10.0.20.0/24"]
+  default     = {
+    subnet-2a = {
+      az = "us-east-2a"
+      cidr = "10.0.10.0/24"
+      des = "2a"
+    }
+    subnet-2b = {
+      az = "us-east-2b"
+      cidr = "10.0.20.0/24"
+      des = "2c"
+    }
+  }
 }
 
 variable "db_name" {

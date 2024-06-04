@@ -81,26 +81,16 @@ resource "aws_route_table_association" "tfworkshop" {
 
 #################### DB ######################
 
-resource "aws_subnet" "tfworkshop_db_1" {
+resource "aws_subnet" "tfworkshop_db" {
+  for_each = var.db_subnet_prefix
   vpc_id     = aws_vpc.tfworkshop.id
-  cidr_block = var.db_subnet_prefix[0]
-  availability_zone = var.availability_zone
+  cidr_block = each.value["cidr"]
+  availability_zone = each.value["az"]
 
   tags = {
-    name = "${var.prefix}-subnet-1"
+    name = "${var.prefix}-subnet-${each.value["des"]}"
   }
 }
-
-resource "aws_subnet" "tfworkshop_db_2" {
-  vpc_id     = aws_vpc.tfworkshop.id
-  cidr_block = var.db_subnet_prefix[1]
-  availability_zone = "us-east-2b"
-
-  tags = {
-    name = "${var.prefix}-subnet-2"
-  }
-}
-
 resource "aws_security_group" "tfworkshop_db" {
   name = "${var.prefix}-db-security-group"
 
