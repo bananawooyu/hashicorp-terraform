@@ -56,12 +56,8 @@ resource "aws_instance" "tfworkshop" {
 #   }
 # }
 
-module "db_instance" {
-  #source = "https://github.com/terraform-aws-modules/terraform-aws-rds"
-  source = [
-    "./modules/db_instance",
-    "./modules/db_subnet_group"
-  ]
+module "rds" {
+  source = "terraform-aws-modules/rds/aws"
   
   identifier = "tfworkshop_rds"
   
@@ -70,7 +66,7 @@ module "db_instance" {
   instance_class    = "${var.db_instance_type}"
   allocated_storage = 5
   
-  name     = "${var.db_name}"
+  db_name  = "${var.db_name}"
   username = "${var_admin_username}"
   password = "${var.password}"
   port     = "3306"
