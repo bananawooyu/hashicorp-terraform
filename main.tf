@@ -63,7 +63,7 @@ resource "aws_instance" "tfworkshop" {
 module "rds" {
   source = "terraform-aws-modules/rds/aws"
   
-  identifier = "tfworkshop_rds"
+  identifier = "tfworkshop-rds"
   
   engine            = "${var.db_engine}"
   engine_version    = "${var.db_engine_version}"
