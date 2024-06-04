@@ -18,7 +18,6 @@ output "aws_instance" {
   value = "${aws_instance.tfworkshop.id}"
 }
 
-
 output "wordpress_url" {
   value = "http://${aws_eip.tfworkshop.public_ip}"
 }

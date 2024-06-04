@@ -19,7 +19,6 @@ resource "aws_subnet" "tfworkshop" {
 
 resource "aws_security_group" "tfworkshop" {
   name = "${var.prefix}-security-group"
-
   vpc_id = aws_vpc.tfworkshop.id
 
   ingress {
@@ -58,7 +57,6 @@ resource "aws_security_group" "tfworkshop" {
 
 resource "aws_internet_gateway" "tfworkshop" {
   vpc_id = aws_vpc.tfworkshop.id
-
   tags = {
     Name = "${var.prefix}-internet-gateway"
   }
@@ -66,7 +64,6 @@ resource "aws_internet_gateway" "tfworkshop" {
 
 resource "aws_route_table" "tfworkshop" {
   vpc_id = aws_vpc.tfworkshop.id
-
   route {
     cidr_block = "0.0.0.0/0"
     gateway_id = aws_internet_gateway.tfworkshop.id
@@ -94,7 +91,6 @@ resource "aws_subnet" "tfworkshop_db" {
 
 resource "aws_route_table" "tfworkshop_db" {
   vpc_id = aws_vpc.tfworkshop.id
-
   route = []
 }
 
