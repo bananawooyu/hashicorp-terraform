@@ -90,3 +90,21 @@ variable "password" {
   description = "Password for the master DB user. Note that this may show up in logs, and it will be stored in the state file"
   default     = "qwer1234"
 }
+
+variable "family" {
+  description = "The family of the DB parameter group"
+  type        = string
+  default     = null
+}
+
+variable "major_engine_version" {
+  description = "Specifies the major version of the engine that this option group should be associated with"
+  type        = string
+  default     = null
+}
+
+variable "use_name_prefix" {
+  description = "Determines whether to use `name` as is or create a unique name beginning with `name` as the specified prefix"
+  type        = bool
+  default     = true
+}

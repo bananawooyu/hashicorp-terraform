@@ -1,3 +1,7 @@
+locals {
+  name_prefix = "jh-ws-rds"
+}
+
 data "aws_ami" "packer" {
   most_recent = true
 
@@ -72,6 +76,9 @@ module "rds" {
   port     = "3306"
   
   vpc_security_group_ids = ["${aws_security_group.tfworkshop_db.id}"]
+
+  family = var.family
+  major_engine_version = var.major_engine_version
 
   maintenance_window = "Mon:00:00-Mon:03:00"
   backup_window      = "03:00-06:00"
