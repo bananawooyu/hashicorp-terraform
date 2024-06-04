@@ -108,3 +108,9 @@ variable "use_name_prefix" {
   type        = bool
   default     = false
 }
+
+variable "multi_az" {
+  description = "Specifies if the RDS instance is multi-AZ"
+  type        = bool
+  default     = false
+}
