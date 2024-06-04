@@ -18,9 +18,9 @@ output "subnet_cidr" {
 #   value = "${aws_instance.tfworkshop.id}"
 # }
 
-output "wordpress_url" {
-  value = "http://${aws_eip.tfworkshop.public_ip}"
-}
+# output "wordpress_url" {
+#   value = "http://${aws_eip.tfworkshop.public_ip}"
+# }
 
 output db_instance_address {
   value = "${module.rds.db_instance_address}"
