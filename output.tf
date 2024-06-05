@@ -10,17 +10,17 @@ output "subnet_cidr" {
   value = aws_subnet.tfworkshop.cidr_block
 }
 
-output instance {
-  value = aws_instance.tfworkshop.ami
-}
+# output instance {
+#   value = aws_instance.tfworkshop.ami
+# }
 
-output "aws_instance" {
-  value = "${aws_instance.tfworkshop.id}"
-}
+# output "aws_instance" {
+#   value = "${aws_instance.tfworkshop.id}"
+# }
 
-output "wordpress_url" {
-  value = "http://${aws_eip.tfworkshop.public_ip}"
-}
+# output "wordpress_url" {
+#   value = "http://${aws_eip.tfworkshop.public_ip}"
+# }
 
 output db_instance_address {
   value = "${module.rds.db_instance_address}"
