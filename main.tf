@@ -14,36 +14,36 @@ data "aws_ami" "packer" {
   owners = ["552166050235"] # private ami
 }
 
-# resource "aws_eip" "tfworkshop" {
-#   instance = aws_instance.tfworkshop.id
-#   domain = "vpc"
-# }
+resource "aws_eip" "tfworkshop" {
+  instance = aws_instance.tfworkshop.id
+  domain = "vpc"
+}
 
-# resource "aws_eip_association" "tfworkshop" {
-#   instance_id   = aws_instance.tfworkshop.id
-#   allocation_id = aws_eip.tfworkshop.id
-# }
+resource "aws_eip_association" "tfworkshop" {
+  instance_id   = aws_instance.tfworkshop.id
+  allocation_id = aws_eip.tfworkshop.id
+}
 
-# resource "aws_instance" "tfworkshop" {
-#   ami                         = data.aws_ami.packer.id
-#   instance_type               = var.instance_type
-#   key_name                    = var.aws_key_pair
-#   associate_public_ip_address = true
-#   subnet_id                   = aws_subnet.tfworkshop.id
-#   vpc_security_group_ids      = [aws_security_group.tfworkshop.id]
+resource "aws_instance" "tfworkshop" {
+  ami                         = data.aws_ami.packer.id
+  instance_type               = var.instance_type
+  key_name                    = var.aws_key_pair
+  associate_public_ip_address = true
+  subnet_id                   = aws_subnet.tfworkshop.id
+  vpc_security_group_ids      = [aws_security_group.tfworkshop.id]
 
-#   user_data = <<EOF
-#   #!/bin/bash
-#   "sudo wget --no-check-certificate --no-proxy 'https://terraformworkshop-jh.s3.ap-northeast-2.amazonaws.com/wordpress.sh'"
-# 	"sudo chmod 777 wordpress.sh"
-# 	"./wordpress.sh"
-#   sleep 5
-#   EOF
+  user_data = <<EOF
+  #!/bin/bash
+  "sudo wget --no-check-certificate --no-proxy 'https://terraformworkshop-jh.s3.ap-northeast-2.amazonaws.com/wordpress.sh'"
+	"sudo chmod 777 wordpress.sh"
+	"./wordpress.sh"
+  sleep 5
+  EOF
 
-#   tags = {
-#     Name = "${var.prefix}-tfworkshop-instance"
-#   }
-# }
+  tags = {
+    Name = "${var.prefix}-tfworkshop-instance"
+  }
+}
 
 module "rds" {
   source = "terraform-aws-modules/rds/aws"
