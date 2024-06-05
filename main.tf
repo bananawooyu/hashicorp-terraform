@@ -33,12 +33,12 @@ resource "aws_instance" "tfworkshop" {
   vpc_security_group_ids      = [aws_security_group.tfworkshop.id]
 
   user_data = <<EOF
-      #!/bin/bash
-      "sudo wget --no-check-certificate --no-proxy 'https://terraformworkshop-jh.s3.ap-northeast-2.amazonaws.com/wordpress.sh'"
-			"sudo chmod 777 wordpress.sh"
-			"./wordpress.sh"
-      sleep 5
-      EOF
+  #!/bin/bash
+  "sudo wget --no-check-certificate --no-proxy 'https://terraformworkshop-jh.s3.ap-northeast-2.amazonaws.com/wordpress.sh'"
+	"sudo chmod 777 wordpress.sh"
+	"./wordpress.sh"
+  sleep 5
+  EOF
 
   tags = {
     Name = "${var.prefix}-tfworkshop-instance"
