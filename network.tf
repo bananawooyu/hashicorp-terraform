@@ -11,6 +11,7 @@ resource "aws_vpc" "tfworkshop" {
 resource "aws_subnet" "tfworkshop" {
   vpc_id     = aws_vpc.tfworkshop.id
   cidr_block = var.web_subnet_prefix
+  availability_zone = var.availability_zone[0]
 
   tags = {
     name = "${var.prefix}-subnet"
