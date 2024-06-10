@@ -393,3 +393,6 @@ deploy wordpress using terraform IaC with packer
     sudo systemctl start httpd
 
 #### 인프라 아키텍처
+![hcp tf workshop 아키텍처](https://github.com/bananawooyu/terraform/assets/57030333/49cad557-fa0a-422a-8d12-e8a5e099af35)
+
+![wp 화면](https://github.com/bananawooyu/terraform/assets/57030333/3c075c30-a722-485c-9443-887268bba501)
