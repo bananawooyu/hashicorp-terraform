@@ -20,7 +20,7 @@ variable "availability_zone" {
 variable "image_id" {
   type = string
   default = "ami-0b8414ae0d8d8b4cc"
-  description = "Enter the id of the machine Image(AMI) to use for the server. [Default : Amazon Linux 3]"
+  description = "Enter the id of the machine Image(AMI) to use for the server. [Default : Amazon Linux 2]"
 }
 
 variable "instance_type" {
@@ -41,7 +41,7 @@ variable "db_instance_type" {
   type = string
   default = "db.t3.micro"
 
-  description = "Enter the db.instance type. [Default : db.t2.micro]"
+  description = "Enter the db.instance type. [Default : db.t3.micro]"
 }
 variable "allocated_storage" {
   description = "The allocated storage in gigabytes"
